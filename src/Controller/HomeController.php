@@ -12,7 +12,7 @@ class HomeController extends AbstractController
     public function index(): JsonResponse
     {
         return new JsonResponse(
-            "Hello in my project!"
+            "Hello in my Note Manager!"
         );
     }
 }

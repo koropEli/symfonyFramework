@@ -9,32 +9,33 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Serializer\SerializerInterface;
 
-
-class SecurityController extends AbstractController
+class UserController extends AbstractController
 {
-    #[Route('/login', name: 'app_login', methods: ['POST'])]
+    #[Route('/login', name: 'login', methods: ['POST'])]
     public function login(AuthenticationUtils $authenticationUtils, Request $request): JsonResponse
     {
         $error = $authenticationUtils->getLastAuthenticationError();
-        $lastUsername = $authenticationUtils->getLastUsername();
+        $lastname = $authenticationUtils->getLastUsername();
 
         if ($error) {
             return new JsonResponse([
                 'message' => 'Invalid credentials',
-                'last_username' => $lastUsername,
+                'last_username' => $lastname,
             ], JsonResponse::HTTP_UNAUTHORIZED);
         }
 
         return new JsonResponse([
             'message' => 'Login successful',
-            'user' => $lastUsername,
+            'user' => $this->getUser()->getUserName()
         ]);
     }
 
 
-    #[Route('/register', name: 'app_register', methods: ['POST'])]
+    #[Route('/register', name: 'register', methods: ['POST'])]
     public function register(Request $request, RegistrationService $registrationService, SessionInterface $session): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -66,10 +67,27 @@ class SecurityController extends AbstractController
         }
     }
 
-
-    #[Route('/logout', name: 'app_logout')]
-    public function logout(): void
+    #[Route('/profile', name: 'profile', methods: ['GET'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    public function index(SerializerInterface $serializer): JsonResponse
     {
+        $user = $this->getUser();
 
+        if (!$user) {
+            return JsonResponse::class->redirectToRoute('error', ['statusCode' => 400, 'message' => 'Firmware not found.']);
+        }
+
+        $userData = $serializer->serialize($user, 'json', ['groups' => ['user:read']]);
+
+        return new JsonResponse($userData, Response::HTTP_OK, [], true);
+    }
+
+
+    #[Route('/logout', name: 'logout')]
+    public function logout(): JsonResponse
+    {
+        return new JsonResponse([
+            'message' => 'Logout successful'
+        ]);
     }
 }

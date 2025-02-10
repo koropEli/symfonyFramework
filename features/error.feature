@@ -1,4 +1,4 @@
 Feature: Error Page
   Scenario: Visiting a non-existent page
-    Given I am on "/12345"
-    Then I should see "404."
+    Given I am on "/non-existent-page"
+    Then I should see "Error 404."

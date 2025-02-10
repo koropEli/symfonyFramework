@@ -1,18 +1,7 @@
 security:
-    firewalls:
-        public:
-            pattern: ^/(css|js|images|favicon.ico)
-            security: false
-
-        main:
-            pattern: ^/
-            form_login:
-                login_path: login
-                check_path: login
-            logout:
-                path: logout
-
-            security: true
+    password_hashers:
+        App\Entity\User:
+            algorithm: auto
 
     providers:
         app_user_provider:
@@ -20,7 +9,21 @@ security:
                 class: App\Entity\User
                 property: email
 
-    password_hashers:
-        App\Entity\User:
-            algorithm: bcrypt
-            cost: 12
+    firewalls:
+        public:
+            pattern: ^/(css|js|images|favicon.ico)
+            security: false
+
+        main:
+            pattern: ^/
+            stateless: false
+            provider: app_user_provider
+            custom_authenticators:
+                - App\Security\LoginAuthenticator
+            form_login:
+                login_path: /login
+                check_path: /login
+                enable_csrf: false
+            logout:
+                path: /logout
+

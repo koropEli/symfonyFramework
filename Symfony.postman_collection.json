@@ -1,0 +1,371 @@
+{
+  "info": {
+    "name": "Symfony API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+	"item": [
+		{
+			"name": "Home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domen}}",
+					"host": [
+						"{{domen}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"student\",\n    \"email\" : \"myuser@cdv.pl\",\n    \"password\" : 1234\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domen}}/register",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"_username\": \"admin@cdv.pl\",\n    \"_password\": \"admin\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domen}}/login",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show current user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domen}}/profile",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Note",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"My Note\",\n    \"content\" : \"Text\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domen}}/note/create",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"note",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Notes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domen}}/note",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Notes by User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domen}}/note/user/1",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"note",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show by Tag",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domen}}/note/tag/1",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"note",
+						"tag",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Latest Note",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domen}}/note/latest/10",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"note",
+						"latest",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Note",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domen}}/note/1",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"note",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Note",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{domen}}/note/1",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"note",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show tags",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domen}}/tag",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"tag"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create tag",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"Friends\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domen}}/tag/create",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"tag",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show tag",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domen}}/tag/14",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"tag",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete tag",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{domen}}/tag/1",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"tag",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Log Out",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domen}}/logout",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Error Hendling",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domen}}/unknow-nroute",
+					"host": [
+						"{{domen}}"
+					],
+					"path": [
+						"unknow-nroute"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "domen",
+			"value": "https://localhost",
+			"type": "string"
+		}
+	]
+}
